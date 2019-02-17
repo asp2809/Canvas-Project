@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import application from "../application.json";
 
+const CANVAS_HEIGHT = 1000;
+const CANVAS_WIDTH = 1500;
+
 class ApplyonPics extends Component {
   constructor(props) {
     super(props);
@@ -11,13 +14,14 @@ class ApplyonPics extends Component {
     };
     this.canvas = null;
   }
+
   componentDidMount = () => {
     let x = document.getElementById("mainCanvas");
     this.canvas = x.getContext("2d");
   };
 
   mouseDownEvent = event => {
-    this.canvas.clearRect(0, 0, 1500, 1000);
+    this.canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     let canvas = document.getElementById("mainCanvas");
     var rect = canvas.getBoundingClientRect();
     var x = event.clientX - rect.left;
@@ -53,34 +57,34 @@ class ApplyonPics extends Component {
         </div>
         <div className="images">
           <div className="img1 animated zoomIn">
-            <img src={application.apiUrl + "pic1.jpeg"} alt="second" />
+            <img src={application.apiUrl + "pic1.jpeg"} alt="first pic" />
           </div>
           <div className="img1 animated zoomIn">
-            <img src={application.apiUrl + "pic2.jpeg"} alt="third" />
+            <img src={application.apiUrl + "pic2.jpeg"} alt="second pic" />
           </div>
           <div className="img1 animated zoomIn">
-            <img src={application.apiUrl + "pic3.jpeg"} alt="fourth" />
+            <img src={application.apiUrl + "pic3.jpeg"} alt="third pic" />
           </div>
           <div className="img1 animated zoomIn">
-            <img src={application.apiUrl + "pic4.jpeg"} alt="fifth" />
+            <img src={application.apiUrl + "pic4.jpeg"} alt="fourth pic" />
           </div>
           <div className="img1 animated zoomIn">
-            <img src={application.apiUrl + "pic5.jpg"} alt="sixth" />
+            <img src={application.apiUrl + "pic5.jpg"} alt="fifth pic" />
           </div>
           <div className="img1 animated zoomIn">
-            <img src={application.apiUrl + "pic6.jpeg"} alt="sixth" />
+            <img src={application.apiUrl + "pic6.jpeg"} alt="sixth pic" />
           </div>
           <div className="img1 animated zoomIn">
-            <img src={application.apiUrl + "pic7.jpeg"} alt="sixth" />
+            <img src={application.apiUrl + "pic7.jpeg"} alt="seventh pic" />
           </div>
           <div className="img1 animated zoomIn">
-            <img src={application.apiUrl + "pic8.jpeg"} alt="sixth" />
+            <img src={application.apiUrl + "pic8.jpeg"} alt="eighth pic" />
           </div>
           <div className="img1 animated zoomIn">
-            <img src={application.apiUrl + "pic9.jpeg"} alt="sixth" />
+            <img src={application.apiUrl + "pic9.jpeg"} alt="ninth pic" />
           </div>
           <div className="img1 animated zoomIn">
-            <img src={application.apiUrl + "pic10.jpeg"} alt="sixth" />
+            <img src={application.apiUrl + "pic10.jpeg"} alt="tenth pic" />
           </div>
         </div>
         <div className="canvas">

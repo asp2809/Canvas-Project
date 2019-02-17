@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 
+const CANVAS_HEIGHT = 600;
+const CANVAS_WIDTH = 1500;
+
 class CanvasOperations extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +12,7 @@ class CanvasOperations extends Component {
       resizeRect: false,
       height: 0,
       width: 0,
-      color: "",
+      color: "#ff0000",
       rectCoordinates: [],
       selected: false,
       selectedCoord: []
@@ -22,7 +25,7 @@ class CanvasOperations extends Component {
   }
 
   clearCanvas = () => {
-    this.canvas.clearRect(0, 0, 1500, 600);
+    this.canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     this.state.rectCoordinates.forEach(e => {
       this.makeRect(e[0], e[1], e[2], e[3], e[4]);
     });
@@ -47,7 +50,6 @@ class CanvasOperations extends Component {
     console.log("x: " + x + " y: " + y);
     this.state.rectCoordinates.forEach(e => {
       if (x > e[0] && y > e[1] && x < e[0] + e[3] && y < e[1] + e[2]) {
-        //Select the particular rectangle
         this.setState({ selected: true, selectedCoord: e });
         this.canvas.fillStyle = "#000";
         this.canvas.fillRect(e[0], e[1], e[2], e[3]);
@@ -100,7 +102,10 @@ class CanvasOperations extends Component {
         return true;
       }
     });
-    this.setState({ rectCoordinates: newCoordinates }, this.clearCanvas);
+    this.setState(
+      { rectCoordinates: newCoordinates, selected: false },
+      this.clearCanvas
+    );
   };
 
   makeRect = (x, y, h, w, color) => {
@@ -128,7 +133,13 @@ class CanvasOperations extends Component {
           <div className="addRectSection">
             <button
               class="addRect button is-primary is-medium is-rounded"
-              onClick={() => this.setState({ addRect: true })}
+              onClick={() =>
+                this.setState({
+                  addRect: true,
+                  resizeRect: false,
+                  color: "#ff0000"
+                })
+              }
             >
               Add Rectangle
             </button>
@@ -166,6 +177,7 @@ class CanvasOperations extends Component {
                     <input
                       class="input"
                       type="color"
+                      value={this.state.color}
                       placeholder="Color"
                       onChange={e => this.setState({ color: e.target.value })}
                     />
@@ -186,7 +198,13 @@ class CanvasOperations extends Component {
             {this.state.selected ? (
               <button
                 class="button is-primary is-medium is-rounded"
-                onClick={() => this.setState({ resizeRect: true })}
+                onClick={() =>
+                  this.setState({
+                    resizeRect: true,
+                    addRect: false,
+                    color: "#ff0000"
+                  })
+                }
               >
                 Resize Rectangle
               </button>
@@ -232,6 +250,7 @@ class CanvasOperations extends Component {
                     <input
                       class="input"
                       type="color"
+                      value={this.state.color}
                       placeholder="Color"
                       onChange={e => this.setState({ color: e.target.value })}
                     />
