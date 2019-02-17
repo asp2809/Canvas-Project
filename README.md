@@ -9,3 +9,5 @@ cd Canvas-Project
 npm install
 npm start
 ```
+
+[Click Here](https://confident-hugle-7206a8.netlify.com/) to view the deployed version.
