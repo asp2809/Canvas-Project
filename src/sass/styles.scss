@@ -1,0 +1,15 @@
+//
+// Main Sass file for imports
+//
+
+// Bulma
+@import "bulma/sass/utilities/_all.sass";
+@import "bulma/sass/grid/columns.sass";
+@import "bulma/sass/elements/button.sass";
+@import "bulma/sass/elements/form.sass";
+
+// Components
+@import "components/App";
+@import "components/CanvasOperations";
+@import "components/ApplyonPics";
+@import "components/Home";
