@@ -34,7 +34,7 @@ class CanvasOperations extends Component {
   addRectangle = () => {
     let x = this.getRandomInt(1500 - this.state.width);
     let y = this.getRandomInt(600 - this.state.height);
-    this.makeRect(x, y, this.state.height, this.state.width, this.state.color);
+    this.makeRect(x, y, this.state.width, this.state.height, this.state.color);
   };
 
   getRandomInt = max => {
@@ -49,7 +49,7 @@ class CanvasOperations extends Component {
     var y = event.clientY - rect.top;
     console.log("x: " + x + " y: " + y);
     this.state.rectCoordinates.forEach(e => {
-      if (x > e[0] && y > e[1] && x < e[0] + e[3] && y < e[1] + e[2]) {
+      if (x > e[0] && y > e[1] && x < e[0] + e[2] && y < e[1] + e[3]) {
         this.setState({ selected: true, selectedCoord: e });
         this.canvas.fillStyle = "#000";
         this.canvas.fillRect(e[0], e[1], e[2], e[3]);
@@ -78,8 +78,8 @@ class CanvasOperations extends Component {
       this.makeRect(
         this.state.selectedCoord[0],
         this.state.selectedCoord[1],
-        this.state.height,
         this.state.width,
+        this.state.height,
         this.state.color
       );
       this.setState(
@@ -108,12 +108,12 @@ class CanvasOperations extends Component {
     );
   };
 
-  makeRect = (x, y, h, w, color) => {
+  makeRect = (x, y, w, h, color) => {
     this.canvas.fillStyle = color;
     this.setState({
-      rectCoordinates: [...this.state.rectCoordinates, [x, y, h, w, color]]
+      rectCoordinates: [...this.state.rectCoordinates, [x, y, w, h, color]]
     });
-    this.canvas.fillRect(x, y, h, w);
+    this.canvas.fillRect(x, y, w, h);
   };
 
   render() {
